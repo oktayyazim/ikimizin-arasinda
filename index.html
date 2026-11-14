@@ -1,4 +1,3 @@
-
 <!DOCTYPE html>
 <html lang="tr">
 <head>
@@ -22,9 +21,7 @@
     <!-- KARŞILAMA EKRANI -->
     <main id="welcome" class="welcome">
         <div class="welcome-content">
-
             <p class="subtitle">SADECE İKİMİZE ÖZEL</p>
-
             <h1>İkimizin Arasında</h1>
 
             <p class="quote">
@@ -45,7 +42,6 @@
             <p class="footer-text">
                 Sen ve ben, aynı hikâyenin iki farklı satırı.
             </p>
-
         </div>
     </main>
 
@@ -142,6 +138,71 @@
                 Burada önemli olan haklı çıkmak değil,
                 birbirimizi gerçekten anlamak.
             </p>
+
+            <!-- CEVAP ALANLARI -->
+            <div class="answers-container">
+
+                <div class="answer-card">
+                    <label for="myAnswer" class="answer-title">
+                        Benim cevabım
+                    </label>
+
+                    <textarea
+                        id="myAnswer"
+                        class="answer-input"
+                        placeholder="Düşüncelerini buraya yaz..."
+                        rows="6"
+                    ></textarea>
+
+                    <div class="answer-footer">
+                        <span id="myAnswerStatus" class="save-status">
+                            Henüz kaydedilmedi
+                        </span>
+
+                        <button
+                            type="button"
+                            class="save-button"
+                            data-person="me"
+                        >
+                            Cevabımı kaydet
+                        </button>
+                    </div>
+                </div>
+
+
+                <div class="answer-card">
+                    <label for="herAnswer" class="answer-title">
+                        İdil'in cevabı
+                    </label>
+
+                    <textarea
+                        id="herAnswer"
+                        class="answer-input"
+                        placeholder="İdil düşüncelerini buraya yazabilir..."
+                        rows="6"
+                    ></textarea>
+
+                    <div class="answer-footer">
+                        <span id="herAnswerStatus" class="save-status">
+                            Henüz kaydedilmedi
+                        </span>
+
+                        <button
+                            type="button"
+                            class="save-button"
+                            data-person="her"
+                        >
+                            Cevabını kaydet
+                        </button>
+                    </div>
+                </div>
+
+            </div>
+
+            <p class="privacy-note">
+                Cevaplar bu cihazın tarayıcısında saklanır.
+            </p>
+
         </section>
 
     </main>
