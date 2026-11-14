@@ -4,9 +4,8 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
     <meta name="theme-color" content="#f8eeee">
-    <meta name="description" content="İkimizin Arasında — Birbirimizi dinlemek, anlamak ve yeniden keşfetmek için bize özel bir alan.">
+    <meta name="description" content="İkimizin Arasında - Birbirimizi anlamak için bize özel bir alan.">
 
     <title>İkimizin Arasında ♡</title>
 
@@ -15,42 +14,32 @@
     <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Playfair+Display:ital,wght@0,500;0,600;0,700;1,500&display=swap" rel="stylesheet">
 
     <link rel="stylesheet" href="style.css">
+    <script src="script.js" defer></script>
 </head>
 
 <body>
 
-    <main class="welcome">
-
+    <!-- KARŞILAMA EKRANI -->
+    <main id="welcome" class="welcome">
         <div class="welcome-content">
 
-            <p class="subtitle">
-                SADECE İKİMİZE ÖZEL
-            </p>
+            <p class="subtitle">SADECE İKİMİZE ÖZEL</p>
 
-            <h1>
-                İkimizin Arasında
-            </h1>
+            <h1>İkimizin Arasında</h1>
 
             <p class="quote">
                 Bazen anlamak, anlatmaktan daha güzeldir.
             </p>
 
-            <div class="heart-divider" aria-hidden="true">
-                <span>♡</span>
-            </div>
+            <div class="heart-divider" aria-hidden="true">♡</div>
 
             <p class="description">
                 Burası birbirimizi dinlemek, anlamak
                 ve yeniden keşfetmek için bizim küçük alanımız.
             </p>
 
-            <button
-                type="button"
-                class="start-button"
-                onclick="startJourney()"
-            >
-                Birlikte keşfedelim
-                <span aria-hidden="true">→</span>
+            <button type="button" id="startButton" class="start-button">
+                Birlikte keşfedelim <span aria-hidden="true">→</span>
             </button>
 
             <p class="footer-text">
@@ -58,10 +47,104 @@
             </p>
 
         </div>
+    </main>
+
+
+    <!-- ANA MENÜ -->
+    <main id="dashboard" class="dashboard" hidden>
+
+        <header class="dashboard-header">
+            <p class="subtitle">BİZE ÖZEL KÜÇÜK BİR DÜNYA</p>
+            <h1>İkimizin Arasında <span>♡</span></h1>
+            <p class="dashboard-description">
+                Birbirimizi anlamak için bazen sadece biraz durup dinlemek yeterlidir.
+            </p>
+        </header>
+
+        <section class="menu-grid" aria-label="Ana menü">
+
+            <button class="menu-card" type="button" data-section="understand">
+                <span class="card-icon">♡</span>
+                <span class="card-title">Birbirimizi Anlayalım</span>
+                <span class="card-description">
+                    Hislerimizi ve beklentilerimizi paylaşalım.
+                </span>
+                <span class="card-arrow">Keşfet →</span>
+            </button>
+
+            <button class="menu-card" type="button" data-section="misunderstanding">
+                <span class="card-icon">☁</span>
+                <span class="card-title">Yanlış Anlaşılmaları Çözelim</span>
+                <span class="card-description">
+                    Ne söyledik, ne anladık, ne hissettik?
+                </span>
+                <span class="card-arrow">Keşfet →</span>
+            </button>
+
+            <button class="menu-card" type="button" data-section="solutions">
+                <span class="card-icon">♡</span>
+                <span class="card-title">Ortak Çözüm</span>
+                <span class="card-description">
+                    Sorunlara karşı karşıya değil, yan yana duralım.
+                </span>
+                <span class="card-arrow">Keşfet →</span>
+            </button>
+
+            <button class="menu-card" type="button" data-section="discover">
+                <span class="card-icon">✧</span>
+                <span class="card-title">Birbirimizi Keşfedelim</span>
+                <span class="card-description">
+                    Birbirimize yeni sorular soralım.
+                </span>
+                <span class="card-arrow">Keşfet →</span>
+            </button>
+
+            <button class="menu-card menu-card-wide" type="button" data-section="story">
+                <span class="card-icon">♡</span>
+                <span class="card-title">Bizim Hikâyemiz</span>
+                <span class="card-description">
+                    Güzel anılarımızı ve özel anlarımızı biriktirelim.
+                </span>
+                <span class="card-arrow">Keşfet →</span>
+            </button>
+
+        </section>
+
+        <footer class="dashboard-footer">
+            <p>Birbirimizi seçtiğimiz sürece, aynı hikâyedeyiz. ♡</p>
+        </footer>
 
     </main>
 
-    <script src="script.js"></script>
+
+    <!-- BÖLÜM EKRANI -->
+    <main id="sectionView" class="section-view" hidden>
+
+        <button type="button" id="backButton" class="back-button">
+            ← Ana menüye dön
+        </button>
+
+        <section class="section-content">
+            <p class="subtitle">İKİMİZİN ARASINDA</p>
+
+            <div class="section-heart">♡</div>
+
+            <h2 id="sectionTitle"></h2>
+
+            <p id="sectionDescription" class="section-description"></p>
+
+            <div class="question-card">
+                <p class="question-label">BİRAZ DÜŞÜNELİM</p>
+                <p id="sectionQuestion" class="section-question"></p>
+            </div>
+
+            <p class="section-note">
+                Burada önemli olan haklı çıkmak değil,
+                birbirimizi gerçekten anlamak.
+            </p>
+        </section>
+
+    </main>
 
 </body>
 </html>
