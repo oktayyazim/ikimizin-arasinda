@@ -1,0 +1,247 @@
+
+/* =================================
+   İKİMİZİN ARASINDA
+   Ana tasarım dosyası
+================================= */
+
+:root {
+    --background: #f8eeee;
+    --background-soft: #fff9f7;
+    --primary: #a8797c;
+    --primary-dark: #805b60;
+    --text: #543d40;
+    --text-soft: #806b6c;
+    --white: #ffffff;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+html {
+    scroll-behavior: smooth;
+}
+
+body {
+    min-height: 100vh;
+    font-family: 'DM Sans', sans-serif;
+    color: var(--text);
+    background:
+        radial-gradient(
+            circle at 15% 20%,
+            rgba(255, 255, 255, 0.9),
+            transparent 35%
+        ),
+        radial-gradient(
+            circle at 85% 80%,
+            rgba(226, 190, 190, 0.25),
+            transparent 35%
+        ),
+        var(--background);
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 24px;
+}
+
+/* Ana ekran */
+
+.welcome {
+    width: 100%;
+    min-height: 90vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    position: relative;
+    overflow: hidden;
+}
+
+/* İçerik alanı */
+
+.welcome-content {
+    width: 100%;
+    max-width: 650px;
+    padding: 55px 35px;
+    background: rgba(255, 249, 247, 0.68);
+    border: 1px solid rgba(168, 121, 124, 0.18);
+    border-radius: 28px;
+
+    box-shadow:
+        0 20px 70px rgba(128, 91, 96, 0.08);
+
+    animation: appear 1.2s ease both;
+}
+
+/* Üst yazı */
+
+.subtitle {
+    color: var(--primary);
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 4px;
+    margin-bottom: 25px;
+}
+
+/* Başlık */
+
+h1 {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(38px, 7vw, 62px);
+    font-weight: 600;
+    line-height: 1.2;
+    color: var(--text);
+    margin-bottom: 20px;
+}
+
+/* Slogan */
+
+.quote {
+    font-family: 'Playfair Display', serif;
+    font-style: italic;
+    font-size: clamp(17px, 3vw, 21px);
+    color: var(--text-soft);
+    line-height: 1.6;
+}
+
+/* Kalp ayracı */
+
+.heart-divider {
+    margin: 28px 0;
+    color: var(--primary);
+    font-size: 27px;
+}
+
+/* Açıklama */
+
+.description {
+    max-width: 420px;
+    margin: 0 auto;
+    color: var(--text-soft);
+    font-size: 15px;
+    line-height: 1.9;
+}
+
+/* Başlangıç butonu */
+
+.start-button {
+    margin-top: 35px;
+    padding: 16px 30px;
+    border: none;
+    border-radius: 50px;
+
+    background: var(--primary);
+    color: var(--white);
+
+    font-family: 'DM Sans', sans-serif;
+    font-size: 14px;
+    font-weight: 600;
+
+    cursor: pointer;
+
+    transition:
+        background 0.3s ease,
+        transform 0.3s ease,
+        box-shadow 0.3s ease;
+
+    box-shadow:
+        0 8px 25px rgba(168, 121, 124, 0.2);
+}
+
+.start-button span {
+    margin-left: 10px;
+    display: inline-block;
+    transition: transform 0.3s ease;
+}
+
+.start-button:hover {
+    background: var(--primary-dark);
+    transform: translateY(-3px);
+
+    box-shadow:
+        0 12px 30px rgba(128, 91, 96, 0.25);
+}
+
+.start-button:hover span {
+    transform: translateX(5px);
+}
+
+.start-button:focus-visible {
+    outline: 3px solid var(--text);
+    outline-offset: 4px;
+}
+
+/* Alt yazı */
+
+.footer-text {
+    margin-top: 40px;
+    color: #a58d8e;
+    font-family: 'Playfair Display', serif;
+    font-size: 13px;
+    font-style: italic;
+}
+
+/* Açılış animasyonu */
+
+@keyframes appear {
+    from {
+        opacity: 0;
+        transform: translateY(25px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* Mobil uyumluluk */
+
+@media (max-width: 600px) {
+
+    body {
+        padding: 15px;
+    }
+
+    .welcome {
+        min-height: 85vh;
+    }
+
+    .welcome-content {
+        padding: 45px 22px;
+        border-radius: 22px;
+    }
+
+    .subtitle {
+        font-size: 10px;
+        letter-spacing: 3px;
+    }
+
+    .description {
+        font-size: 14px;
+    }
+
+    .footer-text {
+        font-size: 12px;
+        margin-top: 32px;
+    }
+
+    .start-button {
+        padding: 15px 25px;
+    }
+}
+
+/* Hareket azaltma tercihi */
+
+@media (prefers-reduced-motion: reduce) {
+    *,
+    *::before,
+    *::after {
+        scroll-behavior: auto !important;
+        animation-duration: 0.01ms !important;
+        transition-duration: 0.01ms !important;
+    }
+}
