@@ -1,4 +1,3 @@
-
 /* =====================================
    İKİMİZİN ARASINDA
    Tam JavaScript dosyası
@@ -18,6 +17,14 @@ document.addEventListener("DOMContentLoaded", function () {
     const sectionTitle = document.getElementById("sectionTitle");
     const sectionDescription = document.getElementById("sectionDescription");
     const sectionQuestion = document.getElementById("sectionQuestion");
+
+    const myAnswer = document.getElementById("myAnswer");
+    const herAnswer = document.getElementById("herAnswer");
+
+    const myAnswerStatus = document.getElementById("myAnswerStatus");
+    const herAnswerStatus = document.getElementById("herAnswerStatus");
+
+    let currentSectionId = null;
 
     // Bölümlerin içerikleri
     const sections = {
@@ -75,6 +82,85 @@ document.addEventListener("DOMContentLoaded", function () {
     };
 
 
+    // Cevapların kaydedileceği anahtar
+    function getStorageKey(sectionId, person) {
+        return "ikimizin-arasinda-" + sectionId + "-" + person;
+    }
+
+
+    // Kaydedilmiş cevapları ekrana getir
+    function loadAnswers(sectionId) {
+
+        myAnswer.value = "";
+        herAnswer.value = "";
+
+        myAnswerStatus.textContent = "Henüz kaydedilmedi";
+        herAnswerStatus.textContent = "Henüz kaydedilmedi";
+
+        try {
+
+            const savedMyAnswer = localStorage.getItem(
+                getStorageKey(sectionId, "me")
+            );
+
+            const savedHerAnswer = localStorage.getItem(
+                getStorageKey(sectionId, "her")
+            );
+
+            if (savedMyAnswer !== null) {
+                myAnswer.value = savedMyAnswer;
+                myAnswerStatus.textContent = "Kaydedilmiş cevap";
+            }
+
+            if (savedHerAnswer !== null) {
+                herAnswer.value = savedHerAnswer;
+                herAnswerStatus.textContent = "Kaydedilmiş cevap";
+            }
+
+        } catch (error) {
+
+            console.error("Cevaplar yüklenemedi:", error);
+
+            myAnswerStatus.textContent = "Kayıt okunamadı";
+            herAnswerStatus.textContent = "Kayıt okunamadı";
+
+        }
+
+    }
+
+
+    // Cevabı kaydet
+    function saveAnswer(person) {
+
+        if (!currentSectionId) {
+            return;
+        }
+
+        const isMe = person === "me";
+
+        const answerInput = isMe ? myAnswer : herAnswer;
+        const status = isMe ? myAnswerStatus : herAnswerStatus;
+
+        try {
+
+            localStorage.setItem(
+                getStorageKey(currentSectionId, person),
+                answerInput.value
+            );
+
+            status.textContent = "Başarıyla kaydedildi ♡";
+
+        } catch (error) {
+
+            console.error("Cevap kaydedilemedi:", error);
+
+            status.textContent = "Kaydedilemedi. Tarayıcı alanını kontrol et.";
+
+        }
+
+    }
+
+
     // Giriş butonu
     startButton.addEventListener("click", function () {
 
@@ -105,9 +191,13 @@ document.addEventListener("DOMContentLoaded", function () {
                 return;
             }
 
+            currentSectionId = sectionId;
+
             sectionTitle.textContent = selectedSection.title;
             sectionDescription.textContent = selectedSection.description;
             sectionQuestion.textContent = selectedSection.question;
+
+            loadAnswers(sectionId);
 
             dashboard.hidden = true;
             welcome.hidden = true;
@@ -123,12 +213,26 @@ document.addEventListener("DOMContentLoaded", function () {
     });
 
 
+    // Kaydet butonları
+    const saveButtons = document.querySelectorAll(".save-button");
+
+    saveButtons.forEach(function (button) {
+
+        button.addEventListener("click", function () {
+            saveAnswer(button.dataset.person);
+        });
+
+    });
+
+
     // Ana menüye geri dön
     backButton.addEventListener("click", function () {
 
         sectionView.hidden = true;
         welcome.hidden = true;
         dashboard.hidden = false;
+
+        currentSectionId = null;
 
         window.scrollTo({
             top: 0,
